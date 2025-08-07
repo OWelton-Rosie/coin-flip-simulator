@@ -19,4 +19,4 @@ Run the program by executing:
 python3 flipper.py
 ```
 
-When you run the program for the first time, you'll see a "coin_stats.txt" file appear. This logs the total amount of flips, the amount of times it's landed on heads or tails, and the percentage values of each. You can reset the stats file at any time by selecting option 2 and confirming. 
+Immediately after the program does the first flip, a "coin_stats.txt" file will be created. This logs the total amount of flips, the amount of times it's landed on heads or tails, and the percentage values of each. You can reset the stats file at any time by selecting option 2 and confirming. 
