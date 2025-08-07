@@ -4,7 +4,7 @@ import time
 import threading
 from collections import Counter
 from stats import load_stats, save_stats, reset_stats
-import animation  # Import the new animation module
+import animation  # Import the animation module
 
 def run_flips(n):
     flips = random.choices(["Heads", "Tails"], k=n)
@@ -13,7 +13,7 @@ def run_flips(n):
 def main():
     stats = load_stats()
 
-    print("Welcome to the Coin Flip Simulator!")
+    print("Welcome to Oscar's Coin Flip Simulator!")
     print("Choose an option (1 or 2):")
     print("1) Flip coins")
     print("2) Reset all-time stats")
@@ -26,7 +26,7 @@ def main():
             save_stats(stats)
             print("Stats have been reset.")
             return
-        else:
+        if confirm == "n":
             print("Reset cancelled.")
             return
 
