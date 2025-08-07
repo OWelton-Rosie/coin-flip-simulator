@@ -26,6 +26,6 @@ Or, if you're using an older version of Python:
 python flipper.py
 ```
 
-Immediately after the program does the first flip, a "coin_stats.txt" file will be created. This logs the total amount of flips, the amount of times it's landed on heads or tails, and the percentage values of each. You can reset the stats file at any time by selecting option 2 and confirming. 
+Immediately after the program does the first flip, a `coin_stats.txt` file will be created. This logs the total amount of flips, the amount of times it's landed on heads or tails, and the percentage values of each. You can reset the stats file at any time by selecting option 2 and confirming. 
 
-In addition, a __pycache__ directory will be created. This stores `.pyc` files.
+In addition, after your first flip, a  `__pycache__` directory will be created. This stores `.pyc` files.
