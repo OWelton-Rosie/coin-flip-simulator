@@ -22,8 +22,8 @@ Run the program by executing:
 python3 flipper.py
 ```
 
-Shortly after executing, you will be asked to give permissions to your terminal/code editor to manage your computer. This is a result of the `anti_lock.py` file, which stops your computer from locking while you're running the simulation
+Shortly after executing, you will be asked to give permissions to your terminal/code editor to manage your computer. This is a result of the `anti_lock.py` file, which stops your computer from locking while you're running the simulation. 
 
-Immediately after the program does the first flip, a `coin_stats.txt` file will be created. This logs the total amount of flips, the amount of times it's landed on heads or tails, and the percentage values of each. You can reset the stats file at any time by selecting option 2 and confirming. 
+Immediately after the program completes the first simulation, a `coin_stats.txt` file will be created. This logs the total amount of flips, the amount of times it's landed on heads or tails, and the percentage values of each. You can reset the stats file at any time by selecting option 2 and confirming. 
 
-In addition, after your first flip, a  `__pycache__` directory will be created. This stores binary `.pyc` files.
+In addition, after the program completes the first simulation, a  `__pycache__` directory will be created. This stores binary `.pyc` files.
