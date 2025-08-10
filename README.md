@@ -1,6 +1,6 @@
 This program was to help with a stats assignment on the difference between experimental and theoretical probability. It helped a great deal by letting me do virtually unlimited simulations. I'm now releasing it to the public. 
 
-<strong>NOTE:</strong> This program uses a **lot** of battery power. If you need to conserver battery life, do not run this program!
+<strong>NOTE:</strong> This program uses a **lot** of battery power. If you need to conserve battery life, do not run this program!
 
 # Installation
 You need Python 3 to run this project.
