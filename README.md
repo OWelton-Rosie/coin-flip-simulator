@@ -1,8 +1,5 @@
 This program was to help with a stats assignment on the difference between experimental and theoretical probability. It helped a great deal by letting me do virtually unlimited simulations. I'm now releasing it to the public. 
 
-<strong>NOTE:</strong> I find that Zsh kills the process and my terminal crashes if I attempt more than 10,000,000,000 (10 billion) flips at a time. 
-This is a hardware issue (I'm on a MacBook Air 2024), so if you have an extremely powerful computer, you'll be able to handle more flips at a time.
-
 <strong>NOTE:</strong> This program uses a **lot** of battery power. If you need to conserver battery life, do not run this program!
 
 # Installation
@@ -30,4 +27,4 @@ python flipper.py
 
 Immediately after the program does the first flip, a `coin_stats.txt` file will be created. This logs the total amount of flips, the amount of times it's landed on heads or tails, and the percentage values of each. You can reset the stats file at any time by selecting option 2 and confirming. 
 
-In addition, after your first flip, a  `__pycache__` directory will be created. This stores `.pyc` files.
+In addition, after your first flip, a  `__pycache__` directory will be created. This stores binary `.pyc` files.
