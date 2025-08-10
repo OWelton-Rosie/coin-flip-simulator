@@ -1,5 +1,7 @@
 This program was to help with a stats assignment on the difference between experimental and theoretical probability. It helped a great deal by letting me do virtually unlimited simulations. I'm now releasing it to the public. 
 
+Technically, there's no limit on how many simulations you can attempt at once. As a result of 860e5a3be5f597381922c6c84399f64fec3bb558, which added repeats, you can do vastly more flips. With that being said, most computers tend to struggle at the 1 billion (1,000,000,000) mark. 
+
 <strong>NOTE:</strong> This program uses a **lot** of battery power. If you need to conserve battery life, do not run this program!
 
 # Installation
