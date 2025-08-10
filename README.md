@@ -3,7 +3,7 @@ This program was to help with a stats assignment on the difference between exper
 <strong>NOTE:</strong> This program uses a **lot** of battery power. If you need to conserver battery life, do not run this program!
 
 # Installation
-You need Python to run this project.
+You need Python 3 to run this project.
 
 First, clone the repo:
 ```
@@ -18,11 +18,6 @@ cd coin-flipper
 Run the program by executing:
 ```
 python3 flipper.py
-```
-
-Or, if you're using an older version of Python:
-```
-python flipper.py
 ```
 
 Shortly after executing, you will be asked to give permissions to your terminal/code editor to manage your computer. This is a result of the `anti_lock.py` file, which stops your computer from locking while you're running the simulation
