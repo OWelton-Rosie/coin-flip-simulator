@@ -1,10 +1,11 @@
-# coinflip.py
 import random
 import time
 import threading
 from collections import Counter
-from stats import load_stats, save_stats, reset_stats
+
+from stats import load_stats, save_stats, reset_stats # Import stats functions
 import animation  # Import the animation module
+from anti_lock import nudge_mouse  # Import the anti-lock function
 
 def run_flips(n):
     flips = random.choices(["Heads", "Tails"], k=n)
@@ -26,38 +27,54 @@ def main():
             save_stats(stats)
             print("Stats have been reset.")
             return
-        if confirm == "n":
+        elif confirm == "n":
             print("Reset cancelled.")
             return
 
     try:
-        flips = int(input("How many times do you want to flip the coin? "))
-        if flips < 1:
+        flips_per_repeat = int(input("How many flips per repeat? "))
+        if flips_per_repeat < 1:
             raise ValueError("Number of flips must be at least 1.")
+
+        repeats = int(input("How many repeats? "))
+        if repeats < 1:
+            raise ValueError("Number of repeats must be at least 1.")
     except ValueError as e:
         print("Error:", e)
         return
 
-    # Start the animation in a separate thread
-    animation.done_flipping = False
-    anim_thread = threading.Thread(target=animation.flip_animation)
-    anim_thread.start()
+    # Start anti-lock mouse nudge thread
+    mouse_thread = threading.Thread(target=nudge_mouse, daemon=True)
+    mouse_thread.start()
 
-    counts = run_flips(flips)
+    total_counts = Counter()
 
-    # Stop the animation
-    animation.done_flipping = True
-    anim_thread.join()
+    for i in range(1, repeats + 1):
+        print(f"\n--- Repeat {i} ---")
 
-    # Update stats
-    stats["Heads"] += counts.get("Heads", 0)
-    stats["Tails"] += counts.get("Tails", 0)
-    stats["Total"] += flips
+        animation.done_flipping = False
+        anim_thread = threading.Thread(target=animation.flip_animation)
+        anim_thread.start()
+
+        counts = run_flips(flips_per_repeat)
+
+        animation.done_flipping = True
+        anim_thread.join()
+
+        print(f"Heads: {counts.get('Heads', 0):,}")
+        print(f"Tails: {counts.get('Tails', 0):,}")
+
+        total_counts.update(counts)
+
+    stats["Heads"] += total_counts.get("Heads", 0)
+    stats["Tails"] += total_counts.get("Tails", 0)
+    stats["Total"] += total_counts.total()
 
     save_stats(stats)
 
-    print(f"Heads: {counts.get('Heads', 0):,}")
-    print(f"Tails: {counts.get('Tails', 0):,}")
+    print("\n=== All repeats combined ===")
+    print(f"Heads: {total_counts.get('Heads', 0):,}")
+    print(f"Tails: {total_counts.get('Tails', 0):,}")
     print("Success: Results saved to coin_stats.txt.")
 
 if __name__ == "__main__":
