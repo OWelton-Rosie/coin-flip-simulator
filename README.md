@@ -12,7 +12,7 @@ git clone https://github.com/OWelton-Rosie/coin-flip-simulator
 
 Navigate to it:
 ```
-cd coin-flip-simulator
+cd coin-flipper
 ```
 
 Run the program by executing:
