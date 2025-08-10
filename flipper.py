@@ -3,9 +3,10 @@ import time
 import threading
 from collections import Counter
 
-from stats import load_stats, save_stats, reset_stats # Import stats functions
+from stats import load_stats, save_stats, reset_stats  # Import stats functions
 import animation  # Import the animation module
 from anti_lock import nudge_mouse  # Import the anti-lock function
+from timer import format_elapsed_time  # Import the timer 
 
 def run_flips(n):
     flips = random.choices(["Heads", "Tails"], k=n)
@@ -43,6 +44,8 @@ def main():
         print("Error:", e)
         return
 
+    start_time = time.time()  # Start timing
+
     # Start anti-lock mouse nudge thread
     mouse_thread = threading.Thread(target=nudge_mouse, daemon=True)
     mouse_thread.start()
@@ -76,6 +79,10 @@ def main():
     print(f"Heads: {total_counts.get('Heads', 0):,}")
     print(f"Tails: {total_counts.get('Tails', 0):,}")
     print("Success: Results saved to coin_stats.txt.")
+
+    end_time = time.time()  # End timing
+    elapsed = end_time - start_time
+    print(f"\nTime taken - {format_elapsed_time(elapsed)}")
 
 if __name__ == "__main__":
     main()
