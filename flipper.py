@@ -3,52 +3,42 @@ import time
 import threading
 from collections import Counter
 
-from stats import load_stats, save_stats, reset_stats  # Import stats functions
-import animation  # Import the animation module
-from anti_lock import nudge_mouse  # Import the anti-lock function
-from timer import format_elapsed_time  # Import the timer 
+from stats import load_stats, save_stats, reset_stats
+import animation
+from anti_lock import nudge_mouse
+from timer import format_elapsed_time
 
 def run_flips(n):
-    flips = random.choices(["Heads", "Tails"], k=n)
-    return Counter(flips)
+    return Counter(random.choices(["Heads", "Tails"], k=n))
 
 def main():
     stats = load_stats()
 
     print("Welcome to Oscar's Coin Flip Simulator!")
-    print("Choose an option (1 or 2):")
-    print("1) Flip coins")
-    print("2) Reset all-time stats")
+    print("1) Flip coins\n2) Reset all-time stats")
     choice = input().strip()
 
     if choice == "2":
-        confirm = input("Are you sure you want to reset stats? (y/n): ").lower()
-        if confirm == "y":
+        if input("Are you sure you want to reset stats? (y/n): ").lower() == "y":
             stats = reset_stats()
             save_stats(stats)
             print("Stats have been reset.")
-            return
-        elif confirm == "n":
+        else:
             print("Reset cancelled.")
-            return
+        return
 
     try:
         flips_per_repeat = int(input("How many flips per repeat? "))
-        if flips_per_repeat < 1:
-            raise ValueError("Number of flips must be at least 1.")
-
         repeats = int(input("How many repeats? "))
-        if repeats < 1:
-            raise ValueError("Number of repeats must be at least 1.")
-    except ValueError as e:
-        print("Error:", e)
+        if flips_per_repeat < 1 or repeats < 1:
+            raise ValueError
+    except ValueError:
+        print("Error: Please enter integers greater than 0.")
         return
 
-    start_time = time.time()  # Start timing
+    start_time = time.time()
 
-    # Start anti-lock mouse nudge thread
-    mouse_thread = threading.Thread(target=nudge_mouse, daemon=True)
-    mouse_thread.start()
+    threading.Thread(target=nudge_mouse, daemon=True).start()
 
     total_counts = Counter()
 
@@ -69,8 +59,8 @@ def main():
 
         total_counts.update(counts)
 
-    stats["Heads"] += total_counts.get("Heads", 0)
-    stats["Tails"] += total_counts.get("Tails", 0)
+    for key in ["Heads", "Tails"]:
+        stats[key] += total_counts.get(key, 0)
     stats["Total"] += total_counts.total()
 
     save_stats(stats)
@@ -80,9 +70,7 @@ def main():
     print(f"Tails: {total_counts.get('Tails', 0):,}")
     print("Success: Results saved to coin_stats.txt.")
 
-    end_time = time.time()  # End timing
-    elapsed = end_time - start_time
-    print(f"\nTime taken - {format_elapsed_time(elapsed)}")
+    print(f"\nTime taken - {format_elapsed_time(time.time() - start_time)}")
 
 if __name__ == "__main__":
     main()
