@@ -1,21 +1,19 @@
 # stats.py
-import os
-
 STATS_FILE = "coin_stats.txt"
 
 def load_stats():
-    if not os.path.exists(STATS_FILE):
-        return {"Heads": 0, "Tails": 0, "Total": 0}
-    with open(STATS_FILE, "r") as f:
-        lines = f.readlines()
     stats = {"Heads": 0, "Tails": 0, "Total": 0}
-    for line in lines:
-        if line.strip() == "":
-            continue
-        key, value = line.strip().split(": ")
-        if " (" in value:
-            value = value.split(" (")[0]
-        stats[key] = int(value.replace(",", ""))
+    try:
+        with open(STATS_FILE, "r") as f:
+            for line in f:
+                if not line.strip():
+                    continue
+                key, val = line.split(":", 1)
+                # Extract number before any parentheses, remove commas, convert to int
+                num_str = val.split("(")[0].strip().replace(",", "")
+                stats[key] = int(num_str)
+    except FileNotFoundError:
+        pass
     return stats
 
 def save_stats(stats):
