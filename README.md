@@ -9,7 +9,7 @@ You need Python 3 to run this project.
 
 First, clone the repo:
 ```
-git clone https://github.com/OWelton-Rosie/coin-flip-simulator
+git clone https://github.com/OWelton-Rosie/coin-flipper
 ```
 
 Navigate to it:
