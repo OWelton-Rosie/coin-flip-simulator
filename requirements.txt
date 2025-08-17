@@ -1,0 +1,7 @@
+# This file contains the dependencies for the coin flip simulator project.
+# It is used to install the required packages using pip.
+# Ensure you have Python and pip installed before running the installation command.
+# To install the dependencies, run:
+# pip install -r requirements.txt
+
+prompt_toolkit>=3.0
