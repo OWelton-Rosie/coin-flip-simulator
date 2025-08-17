@@ -17,6 +17,11 @@ Navigate to it:
 cd coin-flipper
 ```
 
+Install the dependencies with pip:
+```
+pip install -r requirements.txt
+```
+
 Run the program by executing:
 ```
 python3 flipper.py
