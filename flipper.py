@@ -1,3 +1,4 @@
+# flipper.py
 import random
 import time
 import threading
@@ -7,28 +8,9 @@ from stats import load_stats, save_stats, reset_stats
 import animation
 from anti_lock import nudge_mouse
 from timer import format_elapsed_time
+from comma_input import input_number  # <-- import the split module
 
-from prompt_toolkit import prompt
-from prompt_toolkit.validation import Validator, ValidationError
-
-# Validator to allow only digits and commas
-class NumberValidator(Validator):
-    def validate(self, document):
-        text = document.text.replace(",", "")
-        if not text.isdigit() or int(text) < 1:
-            raise ValidationError(message="Enter a number greater than 0.", cursor_position=len(document.text))
-
-# Function to get number input with auto-comma formatting
-def input_number(message):
-    while True:
-        user_input = prompt(message, validator=NumberValidator())
-        # Remove commas and convert to int
-        num = int(user_input.replace(",", ""))
-        # Echo back with commas
-        print(f"You entered: {num:,}")
-        return num
-
-def run_flips(n):
+def run_flips(n: int) -> Counter:
     return Counter(random.choices(["Heads", "Tails"], k=n))
 
 def main():
